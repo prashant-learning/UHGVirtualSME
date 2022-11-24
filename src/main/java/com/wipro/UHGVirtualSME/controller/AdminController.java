@@ -1,6 +1,7 @@
 package com.wipro.UHGVirtualSME.controller;
 
 
+import com.wipro.UHGVirtualSME.model.LoginRequest;
 import com.wipro.UHGVirtualSME.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 public class AdminController {
 
@@ -22,16 +25,16 @@ public class AdminController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<HttpStatus> login(@RequestBody User user) throws Exception {
+    public ResponseEntity<Void> login(@RequestBody LoginRequest loginRequest) throws Exception {
 
         Authentication authObject = null;
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authObject);
         } catch (BadCredentialsException e) {
             throw new Exception("Invalid credentials");
         }
-        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("https://google.com")).build();
     }
 
 }
