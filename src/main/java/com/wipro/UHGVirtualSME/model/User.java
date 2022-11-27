@@ -1,12 +1,14 @@
 package com.wipro.UHGVirtualSME.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 //import javax.persistence.Entity;
 //import javax.persistence.Table;
 //import javax.persistence.UniqueConstraint;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -14,38 +16,41 @@ import javax.validation.constraints.NotBlank;
  * "region":"Airoli","emailID":"a@b.com","employeeid":"1","supervisor":"na","manager":"na","role":"ROLE_USER"}
  */
 
-//@Entity
-//@Table(name = "users",
-//        uniqueConstraints = {
-//                @UniqueConstraint(columnNames = "username")
-//        })
+@Entity
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username")
+        })
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
-//    @NotBlank
+    @Id
+    @NotBlank
     private String username;
 
-//    @NotBlank
+    @NotBlank
     private String password;
 
-//    @NotBlank
+    @NotBlank
     private boolean enabled;
     private boolean isFirstLogin;
     private String fullname;
 
-//    @NotBlank
+    @NotBlank
     private String department;
 
-//    @NotBlank
+    @NotBlank
     private String region;
     private String emailID;
     private String employeeid;
     private String supervisor;
     private String manager;
 
-//    @NotBlank
+    @NotBlank
     private String role;
 
 }
