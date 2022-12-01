@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CommonControllerAdvice {
 
-
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleBadCredentialException(Exception ex){
 
