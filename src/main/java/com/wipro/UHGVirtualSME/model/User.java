@@ -26,6 +26,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -52,5 +53,23 @@ public class User {
 
     @NotBlank
     private String role;
+
+    public UserLoginResponse toLoginResponse(){
+
+      return   UserLoginResponse.builder()
+                .emailID(emailID)
+                .isFirstLogin(isFirstLogin)
+                .department(department)
+                .enabled(enabled)
+                .employeeid(employeeid)
+                .fullname(fullname)
+                .manager(manager)
+                .region(region)
+                .role(role)
+                .supervisor(supervisor)
+                .username(username)
+                .build();
+
+    }
 
 }

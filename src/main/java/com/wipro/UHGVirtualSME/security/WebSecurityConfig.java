@@ -33,7 +33,7 @@ public class WebSecurityConfig {
         authenticationManagerBuilder.userDetailsService(userDetailsService);
         authenticationManager = authenticationManagerBuilder.build();
 
-        http.csrf().disable().cors().disable().authorizeHttpRequests().antMatchers("/api/v1/account/register", "/login").permitAll()
+        http.csrf().disable().cors().disable().authorizeHttpRequests().antMatchers("/api/v1/account/register", "/UHGVirtualSME/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .authenticationManager(authenticationManager)
